@@ -1,0 +1,118 @@
+/* Base styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #544c4c;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+header {
+    width: 100%;
+    background-color: #d6cdcd;
+    color: rgb(21, 21, 21);
+    text-align: center;
+    padding: 20px;
+}
+
+.album-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+}
+
+.album {
+    margin: 10px;
+    text-align: center;
+    max-width: 200px;
+    box-sizing: border-box;
+}
+
+.album img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+    max-height: 200px;
+}
+
+/* Styling for the floating hearts */
+#heartContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    pointer-events: none; /* Allow interactions with other elements */
+}
+
+/* Proper heart shape using ::before and ::after */
+.heart {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    position: relative;
+    display: inline-block;
+    transform: rotate(45deg); /* Rotate the square-like shape to form the base of the heart */
+    animation: float 10s linear infinite, fadeInOut 10s ease-in-out infinite;
+}
+
+.heart::before, .heart::after {
+    content: "";
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: inherit;
+}
+
+/* Positioning the circles to form the top lobes of the heart */
+.heart::before {
+    top: -25px;
+    left: 0;
+}
+
+.heart::after {
+    top: 0;
+    left: -25px;
+}
+
+/* Green and white heart styles */
+.green-heart {
+    background-color: #4CAF50;
+}
+
+.white-heart {
+    background-color: #FFFFFF;
+}
+
+/* Keyframe for floating upward */
+@keyframes float {
+    0% {
+        transform: translateY(100vh) scale(0.5) rotate(45deg);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-20vh) scale(1.2) rotate(45deg);
+        opacity: 0;
+    }
+}
+
+/* Keyframe for fading in and out */
+@keyframes fadeInOut {
+    0%, 100% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+}
